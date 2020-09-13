@@ -14,13 +14,16 @@ program
 
 program.parse(process.argv)
 
-console.log(program.ignore)
+const ignore = ['**/node_modules']
+if (program.ignore) {
+  ignore.push(ignore)
+}
 
 function checkLRForBinFile() {
   console.log(chalk.yellow(`文件夹下的除了 node_modules ${program.ignore} 外的转为 LF 行尾符`))
   fg.sync(
     ['**/*.js'],
-    { ignore: ['**/node_modules', program.ignore] }
+    { ignore }
   ).forEach((file) => {
     const filePath = path.resolve(process.cwd(), file)
     const fileContent = fs.readFileSync(filePath, {
