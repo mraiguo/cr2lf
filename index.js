@@ -20,7 +20,7 @@ if (program.ignore) {
 }
 
 function checkLRForBinFile() {
-  console.log(chalk.yellow(`文件夹下的除了 node_modules ${program.ignore} 外的转为 LF 行尾符`))
+  console.log(chalk.yellow(`文件夹下的除了 node_modules ${program.ignore || ''}外的转为 LF 行尾符`))
   fg.sync(
     ['**/*.js'],
     { ignore }
